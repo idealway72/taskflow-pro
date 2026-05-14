@@ -36,22 +36,22 @@
 
 ---
 
-## Phase 2 — 백엔드 `대기`
+## Phase 2 — 백엔드 `완료`
 
 **목표**: `uvicorn main:app --reload` 실행 후 Swagger(`/docs`)에서 CRUD 5개 엔드포인트가 모두 동작하는 상태.
 
 | # | 단계 | 상태 | 검증 방법 |
 |---|------|------|----------|
-| 2-01 | `backend/` 폴더 생성 + Python 가상 환경(`venv`) 설정 + `requirements.txt` 작성 | 대기 | `pip install -r requirements.txt` 오류 없음 |
-| 2-02 | `database.py` — SQLAlchemy 엔진·세션 설정, SQLite 연결 확인 | 대기 | `python -c "from database import engine; print(engine)"` 오류 없음 |
-| 2-03 | `models.py` — `Task` ORM 모델 + `TaskStatus` enum 정의 | 대기 | `python -c "from models import Task; print(Task.__table__.columns.keys())"` 7개 필드 출력 |
-| 2-04 | Alembic 초기화 + 첫 마이그레이션 생성 및 적용 | 대기 | `taskflow.db` 파일 생성 + `tasks` 테이블 존재 확인 (`sqlite3 taskflow.db ".tables"`) |
-| 2-05 | `schemas.py` — `TaskCreate`, `TaskUpdate`, `TaskListItem`, `TaskDetail` Pydantic 스키마 | 대기 | `python -c "from schemas import TaskCreate; TaskCreate(title='test')"` 오류 없음 |
-| 2-06 | `POST /api/v1/tasks` 구현 + 검증 (title 필수·200자 제한·due_at ISO 8601) | 대기 | Swagger에서 정상 title → `201`, 빈 title → `400`, 날짜만 due_at → `400` 확인 |
-| 2-07 | `GET /api/v1/tasks` 구현 — 목록 반환, description 제외, `?status` 필터 | 대기 | Swagger에서 `200` 응답 + 응답 객체에 `description` 키 없음 확인 |
-| 2-08 | `GET /api/v1/tasks/{id}` 구현 — 단건 반환, description 포함, 없는 id → 404 | 대기 | 존재 id → `200` + `description` 존재 / 없는 id → `404` 확인 |
-| 2-09 | `PUT /api/v1/tasks/{id}` 구현 — 부분 수정, 변경 필드만 반영, updated_at 자동 갱신 | 대기 | `{"status": "done"}` 전송 후 `title` 유지 + `updated_at` 변경 확인 |
-| 2-10 | `DELETE /api/v1/tasks/{id}` 구현 — `204` 반환, 없는 id → `404` | 대기 | 삭제 후 GET → `404` / Swagger `/docs` 에서 5개 엔드포인트 전부 표시 확인 |
+| 2-01 | `backend/` 폴더 생성 + Python 가상 환경(`venv`) 설정 + `requirements.txt` 작성 | ✅ 완료 | `pip install -r requirements.txt` 오류 없음 |
+| 2-02 | `database.py` — SQLAlchemy 엔진·세션 설정, SQLite 연결 확인 | ✅ 완료 | `python -c "from database import engine; print(engine)"` 오류 없음 |
+| 2-03 | `models.py` — `Task` ORM 모델 + `TaskStatus` enum 정의 | ✅ 완료 | `python -c "from models import Task; print(Task.__table__.columns.keys())"` 7개 필드 출력 |
+| 2-04 | Alembic 초기화 + 첫 마이그레이션 생성 및 적용 | ✅ 완료 | `taskflow.db` 파일 생성 + `tasks` 테이블 존재 확인 (`sqlite3 taskflow.db ".tables"`) |
+| 2-05 | `schemas.py` — `TaskCreate`, `TaskUpdate`, `TaskListItem`, `TaskDetail` Pydantic 스키마 | ✅ 완료 | `python -c "from schemas import TaskCreate; TaskCreate(title='test')"` 오류 없음 |
+| 2-06 | `POST /api/v1/tasks` 구현 + 검증 (title 필수·200자 제한·due_at ISO 8601) | ✅ 완료 | Swagger에서 정상 title → `201`, 빈 title → `400`, 날짜만 due_at → `400` 확인 |
+| 2-07 | `GET /api/v1/tasks` 구현 — 목록 반환, description 제외, `?status` 필터 | ✅ 완료 | Swagger에서 `200` 응답 + 응답 객체에 `description` 키 없음 확인 |
+| 2-08 | `GET /api/v1/tasks/{id}` 구현 — 단건 반환, description 포함, 없는 id → 404 | ✅ 완료 | 존재 id → `200` + `description` 존재 / 없는 id → `404` 확인 |
+| 2-09 | `PUT /api/v1/tasks/{id}` 구현 — 부분 수정, 변경 필드만 반영, updated_at 자동 갱신 | ✅ 완료 | `{"status": "done"}` 전송 후 `title` 유지 + `updated_at` 변경 확인 |
+| 2-10 | `DELETE /api/v1/tasks/{id}` 구현 — `204` 반환, 없는 id → `404` | ✅ 완료 | 삭제 후 GET → `404` / Swagger `/docs` 에서 5개 엔드포인트 전부 표시 확인 |
 
 ---
 
@@ -77,6 +77,6 @@
 | Phase | 단계 수 | 완료 | 남은 단계 |
 |-------|--------|------|----------|
 | Phase 1 — 설계 | 10 | 10 | 0 |
-| Phase 2 — 백엔드 | 10 | 0 | 10 |
+| Phase 2 — 백엔드 | 10 | 10 | 0 |
 | Phase 3 — 프론트엔드 | 8 | 0 | 8 |
-| **전체** | **28** | **10** | **18** |
+| **전체** | **28** | **20** | **8** |
