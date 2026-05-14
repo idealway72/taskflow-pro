@@ -55,20 +55,20 @@
 
 ---
 
-## Phase 3 — 프론트엔드 `대기`
+## Phase 3 — 프론트엔드 `구현완료 / 브라우저검증 대기`
 
 **목표**: 브라우저에서 CRUD 4종이 모두 동작하고, 360px에서 레이아웃이 깨지지 않으며, 테마 토글이 새로고침 후에도 유지되고, git push까지 완료된 상태.
 
 | # | 단계 | 상태 | 검증 방법 |
 |---|------|------|----------|
-| 3-01 | `frontend/` 폴더 생성 — `index.html`, `app.js`, `state.js`, `api.js`, `render.js`, `theme.js`, `utils.js` 빈 파일 생성 | 대기 | 7개 파일 존재 확인 |
-| 3-02 | `index.html` — Tailwind CDN, `darkMode: 'class'` 설정, 시스템 폰트, 기본 레이아웃 HTML 골격 | 대기 | 브라우저에서 `index.html` 열림 + 콘솔 에러 없음 |
-| 3-03 | `theme.js` — 라이트/다크 토글, `localStorage('theme')`, `prefers-color-scheme` 초기값 | 대기 | 토글 클릭 후 새로고침 → 이전 테마 유지 확인 |
-| 3-04 | `api.js` — `fetch` 래퍼 5개 함수 (`createTask`, `listTasks`, `getTask`, `updateTask`, `deleteTask`) + 에러 처리 | 대기 | `listTasks()` 호출 시 `[]` 또는 배열 반환 (백엔드 실행 상태에서) |
-| 3-05 | `render.js` + `state.js` — 태스크 목록 카드 렌더링 + `utils.js` D-N 계산·날짜 포맷 + 폴링 3초 | 대기 | 백엔드에 태스크 추가 후 3초 내 화면 자동 반영 확인 |
-| 3-06 | 태스크 추가 폼 — 제목·상태·due_at 입력, 유효성 에러 인라인 표시, 추가 후 목록 즉시 반영 | 대기 | 빈 제목 제출 → 에러 표시 / 정상 입력 → 목록에 카드 추가 확인 |
-| 3-07 | 태스크 수정 모달 — 카드 클릭 시 모달 오픈, `GET /tasks/:id`로 데이터 로드, 저장 후 목록 반영 | 대기 | 카드 클릭 → 모달에 기존 값 표시 / 수정 저장 → 카드 내용 변경 확인 |
-| 3-08 | 태스크 삭제 — 🗑 클릭 → 확인 다이얼로그 → `DELETE` 호출 → 카드 제거 + 360px 반응형 검증 + `git init` & `git push` | 대기 | Chrome DevTools 360px에서 가로 스크롤 없음 / 삭제 후 카드 사라짐 / GitHub 원격 저장소 push 확인 |
+| 3-01 | `frontend/` 폴더 생성 — `index.html`, `app.js`, `state.js`, `api.js`, `render.js`, `theme.js`, `utils.js` 빈 파일 생성 | ✅ 완료 | 7개 파일 존재 확인 |
+| 3-02 | `index.html` — Tailwind CDN, `darkMode: 'class'` 설정, 시스템 폰트, 기본 레이아웃 HTML 골격 | ✅ 완료 | 브라우저에서 `index.html` 열림 + 콘솔 에러 없음 |
+| 3-03 | `theme.js` — 라이트/다크 토글, `localStorage('theme')`, `prefers-color-scheme` 초기값 | ✅ 완료 | 토글 클릭 후 새로고침 → 이전 테마 유지 확인 |
+| 3-04 | `api.js` — `fetch` 래퍼 5개 함수 (`createTask`, `listTasks`, `getTask`, `updateTask`, `deleteTask`) + 에러 처리 | ✅ 완료 | `listTasks()` 호출 시 `[]` 또는 배열 반환 (백엔드 실행 상태에서) |
+| 3-05 | `render.js` + `state.js` — 태스크 목록 카드 렌더링 + `utils.js` D-N 계산·날짜 포맷 + 폴링 3초 | ✅ 완료 | 백엔드에 태스크 추가 후 3초 내 화면 자동 반영 확인 |
+| 3-06 | 태스크 추가 폼 — 제목·상태·due_at 입력, 유효성 에러 인라인 표시, 추가 후 목록 즉시 반영 | ✅ 완료 | 빈 제목 제출 → 에러 표시 / 정상 입력 → 목록에 카드 추가 확인 |
+| 3-07 | 태스크 수정 모달 — 카드 클릭 시 모달 오픈, `GET /tasks/:id`로 데이터 로드, 저장 후 목록 반영 | ✅ 완료 | 카드 클릭 → 모달에 기존 값 표시 / 수정 저장 → 카드 내용 변경 확인 |
+| 3-08 | 태스크 삭제 — 🗑 클릭 → 확인 다이얼로그 → `DELETE` 호출 → 카드 제거 + 360px 반응형 검증 + `git push` | ⏳ 브라우저 검증 대기 | Chrome DevTools 360px에서 가로 스크롤 없음 / 삭제 후 카드 사라짐 / GitHub 원격 저장소 push 확인 |
 
 ---
 
@@ -78,5 +78,5 @@
 |-------|--------|------|----------|
 | Phase 1 — 설계 | 10 | 10 | 0 |
 | Phase 2 — 백엔드 | 10 | 10 | 0 |
-| Phase 3 — 프론트엔드 | 8 | 0 | 8 |
-| **전체** | **28** | **20** | **8** |
+| Phase 3 — 프론트엔드 | 8 | 7 | 1 |
+| **전체** | **28** | **27** | **1** |

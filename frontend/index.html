@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>TaskFlow Pro</title>
+
+  <!-- 플래시 방지: DOM 파싱 전 테마 class 적용 -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      var dark  = saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches);
+      if (dark) document.documentElement.classList.add('dark');
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 min-h-screen font-sans antialiased">
+
+  <!-- 헤더 -->
+  <header class="sticky top-0 z-10 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm border-b border-neutral-200 dark:border-neutral-700">
+    <div class="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
+      <h1 class="text-lg font-bold tracking-tight">TaskFlow Pro</h1>
+      <div class="flex items-center gap-2">
+        <button id="themeToggle"
+          class="flex items-center justify-center min-h-[44px] min-w-[44px] rounded-xl text-xl
+                 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+          aria-label="테마 전환">
+          <span id="themeIcon">🌙</span>
+        </button>
+        <button id="addBtn"
+          class="flex items-center gap-1 min-h-[44px] px-4 bg-blue-500 hover:bg-blue-600
+                 text-white text-sm font-medium rounded-xl transition-colors">
+          <span>+</span><span>추가</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 필터 탭 -->
+  <div class="max-w-2xl mx-auto px-4 pt-4">
+    <div id="filterTabs" class="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+      <button data-filter=""            class="filter-tab shrink-0 min-h-[36px] px-3 text-sm font-medium rounded-lg transition-colors bg-neutral-800 dark:bg-neutral-200 text-white dark:text-neutral-900">전체</button>
+      <button data-filter="todo"        class="filter-tab shrink-0 min-h-[36px] px-3 text-sm font-medium rounded-lg transition-colors bg-neutral-100 dark:bg-neutral-800 text-neutral-500 hover:bg-neutral-200 dark:hover:bg-neutral-700">TODO</button>
+      <button data-filter="in_progress" class="filter-tab shrink-0 min-h-[36px] px-3 text-sm font-medium rounded-lg transition-colors bg-neutral-100 dark:bg-neutral-800 text-neutral-500 hover:bg-neutral-200 dark:hover:bg-neutral-700">진행중</button>
+      <button data-filter="done"        class="filter-tab shrink-0 min-h-[36px] px-3 text-sm font-medium rounded-lg transition-colors bg-neutral-100 dark:bg-neutral-800 text-neutral-500 hover:bg-neutral-200 dark:hover:bg-neutral-700">완료</button>
+    </div>
+  </div>
+
+  <!-- 태스크 목록 -->
+  <main class="max-w-2xl mx-auto px-4 py-4">
+    <div id="taskList" class="space-y-3"></div>
+    <div id="emptyState" class="hidden py-16 text-center text-neutral-400 dark:text-neutral-500">
+      <div class="text-4xl mb-3">✓</div>
+      <p class="text-sm">태스크가 없습니다</p>
+    </div>
+    <div id="loadingState" class="py-16 text-center text-neutral-400 dark:text-neutral-500">
+      <p class="text-sm">불러오는 중…</p>
+    </div>
+  </main>
+
+  <!-- 모달 오버레이 -->
+  <div id="modalOverlay"
+    class="hidden fixed inset-0 bg-black/50 z-20 flex items-center justify-center p-4 overflow-y-auto">
+    <div id="modalContent"
+      class="bg-white dark:bg-neutral-800 rounded-xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto my-auto">
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
